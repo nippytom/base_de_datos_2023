@@ -35,3 +35,5 @@ GROUP BY num_venta) as t3 ON t3.SUM = t2.MIN JOIN ventas ON ventas.num_venta = t
 SELECT empleados.nombre FROM (SELECT MIN(SUM) FROM (SELECT SUM(cantidad) FROM ventas_detalle JOIN productos ON productos.codigo = ventas_detalle.cod_producto WHERE productos.nombre = 'dvd' GROUP BY num_venta)
 as t1) as t2 JOIN (SELECT num_venta, SUM(cantidad) FROM ventas_detalle JOIN productos ON productos.codigo = ventas_detalle.cod_producto WHERE productos.nombre = 'dvd' GROUP BY num_venta)
 as t3 ON t3.SUM = t2.MIN JOIN ventas ON ventas.num_venta = t3.num_venta JOIN empleados ON empleados.rut = ventas.rut_vende GROUP BY empleados.nombre;
+
+--28. 
