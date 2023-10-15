@@ -49,4 +49,4 @@ SELECT rut_cliente, SUM(monto) FROM ventas GROUP BY rut_cliente HAVING COUNT(*) 
 SELECT deptos.numdep, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = empleados.numdep GROUP BY deptos.numdep;
 SELECT deptos.nombre, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = empleados.numdep GROUP BY deptos.nombre;
 
---32. 
+--32. Numero de empleados que estan en grado 3
