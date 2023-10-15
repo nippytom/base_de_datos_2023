@@ -37,3 +37,9 @@ as t1) as t2 JOIN (SELECT num_venta, SUM(cantidad) FROM ventas_detalle JOIN prod
 as t3 ON t3.SUM = t2.MIN JOIN ventas ON ventas.num_venta = t3.num_venta JOIN empleados ON empleados.rut = ventas.rut_vende GROUP BY empleados.nombre;
 
 --28. Nombre, sueldo y grado de los gerentes (MANAGER)
+SELECT nombre, sueldo, grado FROM empleados JOIN grados ON sueldo >= sueldo_inf AND sueldo <= sueldo_sup WHERE cargo = 'MANAGER';
+
+--29. Cantidad de productos cuyos precios son superiores al promedio
+SELECT COUNT(*) FROM productos WHERE precio > (SELECT AVG(precio) FROM productos);
+
+--30. Monto total de las ventas hechas al cliente que menos veces ha comprado
