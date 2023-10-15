@@ -46,3 +46,7 @@ SELECT COUNT(*) FROM productos WHERE precio > (SELECT AVG(precio) FROM productos
 SELECT rut_cliente, SUM(monto) FROM ventas GROUP BY rut_cliente HAVING COUNT(*) = (SELECT MIN(COUNT) FROM (SELECT rut_cliente, COUNT(*) FROM ventas GROUP BY rut_cliente) as menorCompra);
 
 --31. Total de sueldos pagados en cada uno de los departamentos
+SELECT deptos.numdep, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = empleados.numdep GROUP BY deptos.numdep;
+SELECT deptos.nombre, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = empleados.numdep GROUP BY deptos.nombre;
+
+--32. 
