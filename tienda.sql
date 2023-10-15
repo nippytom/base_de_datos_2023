@@ -43,3 +43,6 @@ SELECT nombre, sueldo, grado FROM empleados JOIN grados ON sueldo >= sueldo_inf 
 SELECT COUNT(*) FROM productos WHERE precio > (SELECT AVG(precio) FROM productos);
 
 --30. Monto total de las ventas hechas al cliente que menos veces ha comprado
+SELECT rut_cliente, SUM(monto) FROM ventas GROUP BY rut_cliente HAVING COUNT(*) = (SELECT MIN(COUNT) FROM (SELECT rut_cliente, COUNT(*) FROM ventas GROUP BY rut_cliente) as menorCompra);
+
+--31. Total de sueldos pagados en cada uno de los departamentos
