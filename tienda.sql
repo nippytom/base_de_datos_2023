@@ -50,3 +50,9 @@ SELECT deptos.numdep, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = 
 SELECT deptos.nombre, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = empleados.numdep GROUP BY deptos.nombre;
 
 --32. Numero de empleados que estan en grado 3
+SELECT COUNT(*) FROM empleados JOIN grados ON sueldo >= sueldo_inf AND sueldo <= sueldo_sup WHERE grado = 3;
+
+--33. Monto total vendido en cada comuna
+
+
+--34. Cantidad total vendida de cada producto
