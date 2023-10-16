@@ -53,6 +53,7 @@ SELECT deptos.nombre, SUM(sueldo) FROM empleados JOIN deptos ON deptos.numdep = 
 SELECT COUNT(*) FROM empleados JOIN grados ON sueldo >= sueldo_inf AND sueldo <= sueldo_sup WHERE grado = 3;
 
 --33. Monto total vendido en cada comuna
-
+SELECT comuna, SUM(monto) FROM ventas JOIN clientes ON clientes.rut = ventas.rut_cliente GROUP BY rut_cliente, comuna;
 
 --34. Cantidad total vendida de cada producto
+SELECT cod_producto, SUM(cantidad) FROM ventas_detalle GROUP BY cod_producto;
