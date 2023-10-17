@@ -6,6 +6,8 @@ PRODUCTOS: codigo, nombre, precio
 VENTAS: num_venta, monto, fecha, rut_vende, rut_cliente
 VENTAS_DETALLE: num_venta, cod_producto, cantidad */
 
+--｡･:*:･ﾟ★,｡･:*:･ﾟ☆QUERIES｡･:*:･ﾟ★,｡･:*:･ﾟ☆--
+
 --20. Rut de los clientes y monto total comprado por cada uno de ellos
 SELECT rut_cliente, SUM(monto) FROM ventas GROUP BY ventas.rut_cliente;
 
