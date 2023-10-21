@@ -10,22 +10,24 @@ PATENTES: id, nombre, tipo*/
 SELECT nombre_social FROM representantes WHERE rut = 97004000 AND dv = '5';
 
 --2. Mostrar las direcciones de los locales que corresponden al rut 97004000-5
-
+SELECT direccion FROM locales JOIN representantes ON representantes.id = locales.representantes_id WHERE representantes.rut = 97004000 AND representantes.dv = '5';
 
 --3. ¿Cuantos locales hay en comuna de Ñuñoa?
-
+SELECT COUNT(*) FROM locales JOIN comunas ON comunas.id = locales.comunas_id WHERE comunas.nombre = "Municipalidad de Ñuñoa";
 
 --4. ¿Cuantos locales tiene el rut 97023000-9 en la junta de vecinos numero 7?
-
+SELECT COUNT(*) FROM locales JOIN representantes ON representantes.id = locales.representantes_id JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id WHERE
+representantes.rut = 97023000 AND representantes.dv = '9' AND juntas_vecinos.numero = 7;
 
 --5. ¿Cuantos locales hay en la unidad vecinal 18?
-
+SELECT COUNT(*) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id WHERE juntas_vecinos.numero = 18;
 
 --6. Mostrar la direccion con locales
-
+--No entendi XD
 
 --7. Mostrar el nombre social de los representantes que tengan más de 3 locales y menos de 7 locales
-
+SELECT nombre_social FROM locales JOIN representantes ON representantes.id = locales.representantes_id GROUP BY representantes.id, representantes.nombre_social
+HAVING COUNT(locales.id) > 3 AND COUNT(locales.id) < 7;
 
 --8. Mostrar cuanto paga nombre social CENCOSUD RETAIL S.A. por la totalidad de sus patentes
 
