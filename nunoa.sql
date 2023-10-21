@@ -30,13 +30,16 @@ SELECT nombre_social FROM locales JOIN representantes ON representantes.id = loc
 HAVING COUNT(locales.id) > 3 AND COUNT(locales.id) < 7;
 
 --8. Mostrar cuanto paga nombre social CENCOSUD RETAIL S.A. por la totalidad de sus patentes
-
+SELECT SUM(pago) FROM locales JOIN representantes ON representantes.id = locales.representantes_id WHERE nombre_social = 'CENCOSUD RETAIL S.A.';
 
 --9. Mostrar ordenadamente de mayor a menor quienes tienen mas locales en la comuna
-
+SELECT nombre_social, COUNT(locales.id) FROM representantes JOIN locales ON representantes.id = locales.representantes_id JOIN comunas ON comunas.id = locales.comunas_id
+GROUP BY representantes.id, representantes.nombre_social ORDER BY COUNT(locales.id) DESC;
 
 --10. Mostrar quien tiene más locales en la comuna
-
+SELECT representantes.nombre_social FROM (SELECT MAX(COUNT) FROM (SELECT COUNT(*) FROM locales JOIN representantes on representantes.id = locales.representantes_id GROUP BY representantes.id
+) as t1) as t2 JOIN (SELECT nombre_social, COUNT(*) FROM locales JOIN representantes on representantes.id = locales.representantes_id GROUP BY representantes.id, 
+representantes.nombre_social) as t3 ON t2.MAX = t3.COUNT JOIN representantes ON representantes.nombre_social = t3.nombre_social;
 
 --11. Mostrar los representantes que no estan presente en la junta de vecinos mayores al numero 30 y menores al numero 10
 
