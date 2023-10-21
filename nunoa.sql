@@ -42,6 +42,7 @@ SELECT representantes.nombre_social FROM (SELECT MAX(COUNT) FROM (SELECT COUNT(*
 representantes.nombre_social) as t3 ON t2.MAX = t3.COUNT JOIN representantes ON representantes.nombre_social = t3.nombre_social;
 
 --11. Mostrar los representantes que no estan presente en la junta de vecinos mayores al numero 30 y menores al numero 10
-
+SELECT nombre_social FROM representantes WHERE representantes.id NOT IN (SELECT representantes_id FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id
+WHERE numero > 30 AND numero < 10);
 
 --12. Mostrar el nombre social de quien más paga en las junta vecinos 4 y 16
