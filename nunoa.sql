@@ -45,8 +45,8 @@ representantes.nombre_social) as t3 ON t2.MAX = t3.COUNT JOIN representantes ON 
 SELECT nombre_social FROM representantes WHERE representantes.id NOT IN (SELECT representantes_id FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id
 WHERE numero > 30 AND numero < 10);
 
---12. Mostrar el nombre social de quien más paga en las junta vecinos 4 y 16
-SELECT representantes.nombre_social FROM (SELECT MAX(SUM) FROM (SELECT SUM(pago) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id 
+--12. Mostrar el nombre social de quien más paga en las junta vecinos 4 y 16 ***REVISAR***
+/*SELECT representantes.nombre_social FROM (SELECT MAX(SUM) FROM (SELECT SUM(pago) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id 
 WHERE juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16) as t1) as t2 JOIN (SELECT representantes_id, SUM(pago) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id 
-WHERE juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16 GROUP BY representantes_id) as t3 ON t3.SUM = t2.MAX JOIN representantes ON representantes.id = t3.representantes_id;
+WHERE juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16 GROUP BY representantes_id) as t3 ON t3.SUM = t2.MAX JOIN representantes ON representantes.id = t3.representantes_id; */
 
