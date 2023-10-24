@@ -23,7 +23,7 @@ representantes.rut = 97023000 AND representantes.dv = '9' AND juntas_vecinos.num
 SELECT COUNT(*) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id WHERE juntas_vecinos.numero = 18;
 
 --6. Mostrar la direccion con locales
---No entendi XD
+SELECT direccion, nombre_social FROM locales JOIN representantes ON representantes.id = locales.representantes_id;
 
 --7. Mostrar el nombre social de los representantes que tengan más de 3 locales y menos de 7 locales
 SELECT nombre_social FROM locales JOIN representantes ON representantes.id = locales.representantes_id GROUP BY representantes.id, representantes.nombre_social
