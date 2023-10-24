@@ -29,6 +29,9 @@ SELECT nombre_social, direccion FROM locales JOIN representantes ON representant
 SELECT nombre_social FROM locales JOIN representantes ON representantes.id = locales.representantes_id GROUP BY representantes.id, representantes.nombre_social
 HAVING COUNT(locales.id) > 3 AND COUNT(locales.id) < 7;
 
+SELECT nombre_social FROM representantes WHERE id IN (SELECT representantes_id FROM (SELECT COUNT(*), representantes_id FROM locales GROUP BY representantes_id)AS t1
+WHERE t1.COUNT > 3 AND t1.COUNT < 7;
+
 --8. Mostrar cuanto paga nombre social CENCOSUD RETAIL S.A. por la totalidad de sus patentes
 SELECT SUM(pago) FROM locales JOIN representantes ON representantes.id = locales.representantes_id WHERE nombre_social = 'CENCOSUD RETAIL S.A.';
 
