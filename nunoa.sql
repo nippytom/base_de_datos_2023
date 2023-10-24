@@ -37,7 +37,7 @@ SELECT SUM(pago) FROM locales JOIN representantes ON representantes.id = locales
 
 --9. Mostrar ordenadamente de mayor a menor quienes tienen mas locales en la comuna
 SELECT nombre_social, COUNT(locales.id) FROM representantes JOIN locales ON representantes.id = locales.representantes_id JOIN comunas ON comunas.id = locales.comunas_id
-GROUP BY representantes.id, representantes.nombre_social ORDER BY COUNT(locales.id) DESC;
+GROUP BY representantes.id, representantes.nombre_social ORDER BY COUNT DESC;
 
 --10. Mostrar quien tiene más locales en la comuna
 SELECT representantes.nombre_social FROM (SELECT MAX(COUNT) FROM (SELECT COUNT(*) FROM locales JOIN representantes on representantes.id = locales.representantes_id GROUP BY representantes.id
