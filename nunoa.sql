@@ -29,7 +29,7 @@ SELECT nombre_social, direccion FROM locales JOIN representantes ON representant
 SELECT nombre_social FROM locales JOIN representantes ON representantes.id = locales.representantes_id GROUP BY representantes.id, representantes.nombre_social
 HAVING COUNT(locales.id) > 3 AND COUNT(locales.id) < 7;
 
-SELECT nombre_social FROM representantes WHERE id IN (SELECT representantes_id FROM (SELECT COUNT(*), representantes_id FROM locales GROUP BY representantes_id)AS t1
+SELECT nombre_social FROM representantes WHERE id IN (SELECT representantes_id FROM (SELECT COUNT(*), representantes_id FROM locales GROUP BY representantes_id)AS t1)
 WHERE t1.COUNT > 3 AND t1.COUNT < 7;
 
 --8. Mostrar cuanto paga nombre social CENCOSUD RETAIL S.A. por la totalidad de sus patentes
@@ -49,7 +49,6 @@ SELECT nombre_social FROM representantes WHERE representantes.id NOT IN (SELECT 
 WHERE numero > 30 AND numero < 10);
 
 --12. Mostrar el nombre social de quien más paga en las junta vecinos 4 y 16 ***REVISAR***
-/*SELECT representantes.nombre_social FROM (SELECT MAX(SUM) FROM (SELECT SUM(pago) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id 
-WHERE juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16) as t1) as t2 JOIN (SELECT representantes_id, SUM(pago) FROM locales JOIN juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id 
-WHERE juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16 GROUP BY representantes_id) as t3 ON t3.SUM = t2.MAX JOIN representantes ON representantes.id = t3.representantes_id; */
-
+SELECT representantes.nombre_social FROM (SELECT MAX(SUM) FROM (SELECT SUM(pago) FROM locales JOIN (SELECT locales.id FROM locales join juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id WHERE
+juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16) AS t1 ON t1.id = locales.id GROUP BY representantes_id) AS t2) as t3 JOIN (SELECT representantes_id, SUM(pago) FROM locales JOIN (SELECT locales.id FROM locales join juntas_vecinos ON juntas_vecinos.id = locales.juntas_vecinos_id WHERE
+juntas_vecinos.numero = 4 OR juntas_vecinos.numero = 16) AS t1 ON t1.id = locales.id GROUP BY representantes_id) AS t4 ON t4.SUM = t3.MAX JOIN representantes ON representantes.id = t4.representantes_id;
